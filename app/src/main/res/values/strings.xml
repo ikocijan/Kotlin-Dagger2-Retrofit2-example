@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">KotlinExample</string>
+    <string name="please_wait">Please wait…</string>
+    <string name="error_fetching_data">An error occured. Please try again</string>
+</resources>

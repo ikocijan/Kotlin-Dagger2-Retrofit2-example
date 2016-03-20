@@ -1,0 +1,80 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.2"
+
+
+    def API_URL = 'API_URL'
+    def STRING = 'String'
+
+    defaultConfig {
+        applicationId "xyz.ivankocijan.kotlinexample"
+        minSdkVersion 15
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+        buildConfigField STRING, API_URL, '"http://pokeapi.co/"'
+
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+        androidTest.java.srcDirs += 'src/androidTest/kotlin'
+    }
+}
+
+kapt {
+    generateStubs = true
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:23.2.1'
+    compile 'com.android.support:recyclerview-v7:23.2.1'
+    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+
+    compile "org.jetbrains.anko:anko-common:0.8.3"
+
+    compile 'com.jakewharton:kotterknife:0.1.0-SNAPSHOT'
+
+    compile 'com.squareup.okhttp3:okhttp:3.2.0'
+    compile 'com.squareup.okhttp3:logging-interceptor:3.2.0'
+    compile 'com.squareup.retrofit2:retrofit:2.0.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.0.0'
+    compile 'com.google.code.gson:gson:2.4'
+
+    compile 'com.jakewharton.timber:timber:4.1.1'
+    compile 'javax.inject:javax.inject:1'
+
+    compile 'com.google.dagger:dagger:2.0.2'
+    kapt 'com.google.dagger:dagger-compiler:2.0.2'
+    compile 'org.glassfish:javax.annotation:10.0-b28'
+
+}
+buildscript {
+    ext.kotlin_version = '1.0.1'
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+repositories {
+    mavenCentral()
+}
